@@ -1,0 +1,51 @@
+/* Dark mode specific designs */
+
+body {
+    background: #181818;
+    color: white;
+}
+
+a {
+    color: gray;
+}
+
+button {
+    background-color: #1f1f1f;
+    border: black;
+    color: white;
+}
+
+p.copyright {
+    color: lightgray;
+    outline: none;
+    border: none;
+}
+
+div.output-wrap {
+    background-color: #1f1f1f;
+}
+
+div.output-wrap > h2{
+    color: white;
+}
+
+textarea {
+    color: lightsalmon !important;
+    background-color: #1f1f1f;
+}
+
+.hr {
+    background-color: lightgray;
+}
+
+div.docs > div.syntax {
+    background-color: #1f1f1f;
+}
+
+p.command {
+    color: lightsalmon !important;
+}
+
+a#share {
+    color: white;
+}

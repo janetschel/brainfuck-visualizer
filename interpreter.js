@@ -1,7 +1,18 @@
 const output = document.getElementById("output");
 
+const paste = () => {
+    document.getElementById("brainfuck-code").innerHTML = 
+        "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 const interpret = () => {
-    const code = document.getElementById("brainfuck-code").value.split("");
+    const code = document.getElementById("brainfuck-code")
+        .value
+        .split("")
+        .filter(character => ["<", ">", "+", "-", ".", ",", "[", "]"].includes(character));
+
     const matchingParenthese = findMatchingParenthese(code);
 
     output.innerHTML = "";
@@ -21,7 +32,7 @@ const interpret = () => {
             output.innerHTML += String.fromCharCode(tape[`${pointer}`]);
         } else if (currentCharacter === ",") {
             const number = prompt("Type your input:", "");
-            tape[`${pointer}`] = parseInt(number);
+            tape[`${pointer}`] = parseInt(number.charCodeAt());
         } else if ((currentCharacter === "[" && tape[`${pointer}`] === 0) || (currentCharacter === "]" && tape[`${pointer}`] !== 0)) {
             index = findMatchingParentheseForIndex(matchingParenthese, index);
         }

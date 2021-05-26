@@ -1,67 +1,198 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;1,200&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+
+    font-family: 'Roboto Mono', monospace;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    color: #2b2522;
-    background-color: #f5efe1;
-
     display: grid;
-    justify-content: center;
-
     grid-template-areas: 
-        "."
-        "heading"
-        "."
-        "button"
-        "interpreter"
-        "."
-        "output";
+        ". heading ."
+        "input input input"
+        "output-text . ."
+        "output output output"
+        "hr hr hr"
+        "docs docs docs";
 
-    grid-template-columns: 50%;
-    grid-template-rows: 50px auto 50px auto 500px 50px auto;
+    grid-template-columns: 100px 750px 100px;
+    grid-template-rows: auto 500px 50px 100px 50px auto;
+
+    justify-content: center;
 }
 
+/* Heading styling */
 div.heading {
-    padding: 20px;
-    text-align: center;
     grid-area: heading;
+    text-align: center;
+    margin-bottom: 100px;
 }
 
 div.heading > h1 {
-    font-size: 24px;
+    margin: 20px;
 }
 
-textarea#brainfuck-code {
-    grid-area: interpreter;
+div.heading > h2 {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-top: -10px;
+}
 
-    padding: 20px;
-    height: calc(100%-20px);
-    background-color: #2b2522;
-    color: #917263;
-    font-size: 20px;
+/* Input styling */
+div.brainfuck-input {
+    grid-area: input;
+
+    display: grid;
+    grid-template-areas: 
+        "run . ."
+        "text text text";
+
+    grid-template-rows: 75px auto;
+
+    width: calc(100% - 20px);
+    margin-bottom: 40px;
+}
+
+div.brainfuck-input > textarea {
+    grid-area: text;
+
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
+
     resize: none;
+    color: green;
 }
 
-textarea#brainfuck-code:focus {
-    outline:0px !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
+div.brainfuck-input > textarea:focus {
+    outline: none;
 }
 
-button {
-    grid-area: button;
-
-    background-color: lightgray;
-    margin: 10px 0;
-    width: 75px;
+div.brainfuck-input > button {
+    grid-area: run;
+    width: 100px;
     height: 50px;
+
+    outline: none;
 }
 
-h2.output {
+div.brainfuck-input > button:hover {
+    cursor: pointer;
+}
+
+/* Output styling */
+div.output-wrap {
     grid-area: output;
+
+    width: 100%;
+    height: 75px;
+    background-color: rgba(0, 0, 0, 0.05);
+
+    font-size: 12px;
+    margin-top: -20px;
+
+    display: grid;
+    align-items: center;
+}
+
+div.output-wrap > h2 {
+    margin-left: 20px;
+    color: gray;
+}
+
+h2.output-text {
+    grid-area: output-text;
+    font-size: 16px;
+    color: gray;
+}
+
+/* HR */
+.hr {
+    grid-area: hr;
+    align-self: center;
+
+    height: 1px;
+    border: none;
+    background-color: lightgray;
+}
+
+/* Docs styling */
+div.docs {
+    margin-top: 40px;
+    grid-area: docs;
+    margin-bottom: 50px;
+}
+
+div.docs > p.intro {
+    margin-top: 25px;
+}
+
+div.docs > p {
+    margin: 10px 0;
+}
+
+div.docs > div.syntax {
+    margin: 35px 0;
+    width: calc(100%-20px);
+    padding: 20px;
+
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+div.docs > div.syntax > p {
+    display: inline;
+}
+
+div.docs > div.syntax > p.command {
+    font-weight: 300;
+    color: green;
+}
+
+div.docs > h2.hello, div.docs > h2.more {
+    margin-top: 75px;
+    margin-bottom: 25px;
+}
+
+p.comment {
+    float: right;
+    color: gray;
+}
+
+div.docs > button {
+    width: 250px;
+    height: 45px;
+    margin-top: -10px;
+
+    outline: none;
+}
+
+div.docs > button:hover {
+    cursor: pointer;
+}
+
+div.docs > p.copyright {
+    color: gray;
+}
+
+/* Dark mode toggle */
+button#toggle, a#share {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    top: 25px;
+    right: 25px;
+}
+
+a#share {
+    top: 50px;
+    color: black;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+button#toggle:hover, a#share {
+    cursor: pointer;
 }

@@ -3,19 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brainfuck Interpreter</title>
-    <link rel="stylesheet" href="style.css">
+    <title>What the (Brain)fuck?</title>
+    <link rel="stylesheet" href="style.css" id="base-theme">
+    <link rel="stylesheet" href="style.css" id="theme"> <!-- specific theme for dark mode -->
 </head>
 <body>
+    <button id="toggle" onclick="toggle()">toggle themes</button>
+    <a target="_blank" id="share" href="https://twitter.com/intent/tweet?text=----[-->%2b%2b%2b%2b%2b<]>.[------>%2b<]>.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.----------.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.[---->%2b<]>%2b%2b%2b.-[--->%2b%2b<]>.---------.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.---------.[--->%2b<]>---.-.%2b%2b%2b[->%2b%2b%2b<]>%2b.%2b%2b%2b%2b%2b.---.%2b%2b%2b%2b%2b%2b%2b.[-->%2b<]>--------.--[--->%2b<]>.%2b.[--->%2b<]>-.[%2b%2b>---<]>--.%2b%2b[->%2b%2b<]>.%2b%2b%2b%2b.[--->%2b<]>-.">share on twitter</a>
     <div class="heading">
-        <h1 class="heading-h1">Brainfuck Interpreter and Visualzier</h1>
+        <h1>Brainfuck interpreter and visualizer</h1>
+        <h2>visit me at <a target="_blank" href="https://janetschel.dev">janetschel.dev</a></h2>
     </div>
 
-    <textarea type="text" name="brainfuck-code" id="brainfuck-code"></textarea>
-    <button onclick="interpret()">Run</button>
+    <div class="brainfuck-visualization">
+        
+    </div>
 
-    <h2 class="output" id="output"></h2>
+    <div class="brainfuck-input">
+        <textarea type="text" name="brainfuck-code" id="brainfuck-code" spellcheck="false">-[------->+<]>-.--[-->+++<]>.[--->+<]>--.</textarea>
+        <button onclick="interpret()">RUN</button>
+    </div>
+
+    <h2 class="output-text">Output:</h2>
+    <div class="output-wrap">
+        <h2 class="output" id="output"></h2>
+    </div>
+
+    <hr class="hr"/>
+
+    <div class="docs">
+        <h2>Quick Brainfuck guide</h2>
+
+        <p class="intro">Brainfuck is an esoteric programming language created in 1993 by Urban Müller.</p>
+        <p>The language consists of only eight simple commands and an instruction pointer. While it is fully Turing complete, it is not intended for practical use, but to challenge and amuse programmers. Brainfuck simply requires one to break commands into microscopic steps.</p>
+        <p>Hence the name <a target="_blank" href="https://en.wikipedia.org/wiki/Brainfuck">Brainfuck</a>.</p>
+        <div class="syntax">
+            <p class="command">></p><p>	increment the data pointer (to point to the next cell to the right).</p> <br><br>
+            <p class="command"><</p><p>	decrement the data pointer (to point to the next cell to the left).</p> <br><br>
+            <p class="command">+</p><p>	increment (increase by one) the byte at the data pointer.</p> <br><br>
+            <p class="command">-</p><p>	decrement (decrease by one) the byte at the data pointer.</p> <br><br>
+            <p class="command">.</p><p>	output the byte at the data pointer.</p> <br><br>
+            <p class="command">,</p><p>	accept one byte of input, storing its value in the byte at the data pointer.</p> <br><br>
+            <p class="command">[</p><p>	if the byte at the data pointer is zero, then instead of moving the instruction pointer forward to the next command, jump it forward to the command after the matching <p class="command">]</p> command.</p> <br><br>
+            <p class="command">]</p><p>	if the byte at the data pointer is nonzero, then instead of moving the instruction pointer forward to the next command, jump it back to the command after the matching <p class="command">[</p> command.</p> <br><br>
+        </div>
+        <p>These are the basic commands, which operate on an infinitely long tape where cells are incremented and decremented respectively.</p>
+        <p>All other characters are treated as comments (= ignored).</p>
+
+        <h2 class="hello">Hello World!</h2>
+        <p>Lets look at 'Hello World!' in Brainfuck. All steps are annotated with comments.</p>
+        <div class="syntax hello-code">
+            <p class="command">++++++++</p><p class="comment">Set Cell #0 to 8</p> <br>
+            <p class="command">[</p> <br>
+            <p class="command">>++++</p><p class="comment">Add 4 to Cell #1; this will always set Cell #1 to 4</p> <br>
+            <p class="command">[</p><p class="comment">as the cell will be cleared by the loop</p> <br>
+            <p class="command">>++</p><p class="comment">Add 2 to Cell #2</p> <br>
+            <p class="command">>+++</p><p class="comment">Add 3 to Cell #3</p> <br>
+            <p class="command">>+++</p><p class="comment">Add 3 to Cell #4</p> <br>
+            <p class="command">>+</p><p class="comment">Add 1 to Cell #5</p> <br>
+            <p class="command"><<<<-</p><p class="comment">Decrement the loop counter in Cell #1</p> <br>
+            <p class="command">]</p><p class="comment">Loop till Cell #1 is zero; number of iterations is 4</p> <br>
+            <p class="command">>+</p><p class="comment">Add 1 to Cell #2</p> <br>
+            <p class="command">>+</p><p class="comment">Add 1 to Cell #3</p> <br>
+            <p class="command">>-</p><p class="comment">Subtract 1 from Cell #4</p> <br>
+            <p class="command">>>+</p><p class="comment">Add 1 to Cell #6</p> <br>
+            <p class="command">[<]</p><p class="comment">Move back to the first zero cell you find</p> <br>
+            <p class="command"><-</p><p class="comment">Decrement the loop Counter in Cell #0</p> <br>
+            <p class="command">]</p><p class="comment">Loop till Cell #0 is zero; number of iterations is 8</p> <br>
+            <br>
+            <p class="command">>>.</p><p class="comment">Cell #2 has value 72 which is 'H'</p> <br>
+            <p class="command">>---.</p><p class="comment">Subtract 3 from Cell #3 to get 101 which is 'e'</p> <br>
+            <p class="command">+++++++..+++.</p><p class="comment">Likewise for 'llo' from Cell #3</p> <br>
+            <p class="command">>>.</p><p class="comment">Cell #5 is 32 for the space</p> <br>
+            <p class="command"><-.</p><p class="comment">Subtract 1 from Cell #4 for 87 to give a 'W'</p> <br>
+            <p class="command"><.</p><p class="comment">Cell #3 was set to 'o' from the end of 'Hello'</p> <br>
+            <p class="command">+++.------.--------.</p><p class="comment">Cell #3 for 'rl' and 'd'</p> <br>
+            <p class="command">>>+.</p><p class="comment">Add 1 to Cell #5 gives us an exclamation point</p> <br>
+            <p class="command">>++.</p><p class="comment">And finally a newline from Cell #6</p> <br>
+        </div>
+
+        <p>This concludes our little 'Hello World!' example in Brainfuck.</p>
+        <p>You can see it looks pretty intimidating, but it really is not if you once get the hang of it. Other people, for example, have manage to build the game <a href="https://www.youtube.com/watch?v=qK0vmuQib8Y">TicTacToe</a> with a full-blown computer AI.</p>
+        <p>If we shorten the 'Hello World!' code from above and remove all unnecessary characters, this is what we get:</p>
+
+        <div class="syntax hello-code">
+            <p class="command">++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.</p>
+        </div>
+        <button onclick="paste()">Paste to above interpreter</button>
+
+        <h2 class="more">Some more examples</h2>
+        <p>For some more Brainfuck files, you can visit <a target="_blank" href="https://github.com/fabianishere/brainfuck/tree/master/examples">this</a> GitHub repository; or you can experiment by yourself in the above interpreter and visualizer.</p>
+        <p>Any more ideas? You can contact me at my <a target="_blank" href="https://github.com/janetschel">GitHub</a></p> <br>
+        <p class="copyright">© Jan Etschel, 2021, licensed under <a target="_blank" href="https://de.wikipedia.org/wiki/WTFPL">WTFPL</a></p>
+    
+    </div>
 
     <script src="interpreter.js"></script>
+    <script src="toggle-dark.js"></script>
 </body>
 </html>
