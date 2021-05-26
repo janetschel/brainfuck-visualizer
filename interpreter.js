@@ -26,8 +26,6 @@ const interpret = () => {
             index = findMatchingParentheseForIndex(matchingParenthese, index);
         }
     }
-
-    console.log(tape)
 };
 
 const findMatchingParenthese = (code) => {
