@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #2b2522;
+    background-color: #f5efe1;
+
+    display: grid;
+    justify-content: center;
+
+    grid-template-areas: 
+        "."
+        "heading"
+        "."
+        "button"
+        "interpreter"
+        "."
+        "output";
+
+    grid-template-columns: 50%;
+    grid-template-rows: 50px auto 50px auto 500px 50px auto;
+}
+
+div.heading {
+    padding: 20px;
+    text-align: center;
+    grid-area: heading;
+}
+
+div.heading > h1 {
+    font-size: 24px;
+}
+
+textarea#brainfuck-code {
+    grid-area: interpreter;
+
+    padding: 20px;
+    height: calc(100%-20px);
+    background-color: #2b2522;
+    color: #917263;
+    font-size: 20px;
+    resize: none;
+}
+
+textarea#brainfuck-code:focus {
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+}
+
+button {
+    grid-area: button;
+
+    background-color: lightgray;
+    margin: 10px 0;
+    width: 75px;
+    height: 50px;
+}
+
+h2.output {
+    grid-area: output;
+}
