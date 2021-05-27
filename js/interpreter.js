@@ -1,14 +1,21 @@
 const output = document.getElementById("output");
 const element = document.getElementById("brainfuck-code");
 
+const run = document.getElementById("run-button");
+const stop = document.getElementById("stop-button")
+
 element.focus();
-element.setSelectionRange(element.value.length,element.value.length);
+element.setSelectionRange(element.value.length, element.value.length);
 
-const interpret = () => {
-    const code = element.value
-        .split("")
-        .filter(character => ["<", ">", "+", "-", ".", ",", "[", "]"].includes(character));
+let execute = false;
 
+const interpret = async () => {
+    execute = true;
+    init(); // inits visualization on tape
+
+    run.disabled = true;
+
+    const code = element.value.split("");
     const matchingParenthese = findMatchingParenthese(code);
 
     output.innerHTML = "";
@@ -16,8 +23,12 @@ const interpret = () => {
     let tape = {};
     let pointer = 0;
 
-    for (let index = 0; index < code.length; index++) {
+    for (let index = 0; index < code.length && execute; index++) {
         const currentCharacter = code[index];
+
+        if (!["<", ">", "+", "-", ".", ",", "[", "]"].includes(currentCharacter)) {
+            continue;
+        }
 
         if (["<", ">"].includes(currentCharacter)) {
             pointer += currentCharacter == "<" ? -1 : 1;
@@ -32,7 +43,11 @@ const interpret = () => {
         } else if ((currentCharacter === "[" && tape[`${pointer}`] === 0) || (currentCharacter === "]" && tape[`${pointer}`] !== 0)) {
             index = findMatchingParentheseForIndex(matchingParenthese, index);
         }
+
+        await visualizeTape(tape, pointer, currentCharacter, index);
     }
+
+    reset();
 };
 
 const findMatchingParenthese = (code) => {
@@ -88,4 +103,22 @@ const checkForWrap = (pointer, tape) => {
 
 const existsOnTapeOrElse = (key, tape, elseValue) => {
     return key in tape ? tape[`${key}`] : elseValue;
+};
+
+// Buttons
+
+// Stops execution immediatly
+const stopExecution = () => {    
+    output.innerHTML = "";
+
+    reset();
+    init();
+};
+
+const reset = () => {
+    execute = false;
+    run.disabled = false;
+
+    element.focus();
+    element.setSelectionRange(element.value.length, element.value.length);
 };

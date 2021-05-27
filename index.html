@@ -16,13 +16,19 @@
         <h2>visit me at <a target="_blank" href="https://janetschel.dev">janetschel.dev</a></h2>
     </div>
 
-    <div class="brainfuck-visualization">
-        
+    <div class="brainfuck-visualization" id="brainfuck-visualization">
+        <!-- auto generated HTML from JS -->
     </div>
 
     <div class="brainfuck-input">
         <textarea type="text" name="brainfuck-code" id="brainfuck-code" spellcheck="false">-[------->+<]>-.--[-->+++<]>.[--->+<]>--.</textarea>
-        <button onclick="interpret()">RUN</button>
+        <button onclick="interpret()" id="run-button">RUN</button>
+        <button onclick="stopExecution()" id="stop-button">STOP AND RESET</button>
+        <div id="delay">
+            <p id="delay-visible">Delay: 100ms</p> <br>
+            <p class="minus change" onclick="updateValue('-')">-</p>
+            <p class="plus change" onclick="updateValue('+')">+</p> 
+        </div>
     </div>
 
     <h2 class="output-text">Output:</h2>
@@ -56,7 +62,7 @@
         <p>Here are some important implementation details of this interpreter/visualzier:</p>
         <ul class="implementation-details">
             <li>Cells (like in the classic distribution) have a fixed size of 8 bytes (0 to 255). This <b>unsigend</b> number will over- and underflow respectively.</li> <br>
-            <li>The tape size (or array size) is implemented in a way that it can theoretically handle infinite cells. However, the visualizer is capped at 25 cells. If you would like to use more <b>disable the visualizer.</b></li> <br>
+            <li>The tape size (or array size) is implemented in a way that it can theoretically handle infinite cells. However, the visualizer is capped at 20 cells.</li> <br>
             <li>The tape could - once again based on the implementation of the interpreter - be extended to the left. This is pretty uncommon behaviour for Brainfuck interpreters, which is why it is deliberately disabled for the visualizer.</b></li> <br>
             <li>End-of-line characters are ignored - regardless of what they are.</li> <br>
             <li>End-of-file behaviour: when encountering an <span class="command">,</span> at the end of a file, no value will be changed (the pointer <b>will not</b> be set 0, nor will any EOF-constat will be set). There is no real consensus.</li>
@@ -125,7 +131,8 @@
 
 
         <h2 class="more">Some more examples</h2>
-        <p>To conclude our little examples, take a look at this Brainfuck code. It will print the entire English alphabet to the screen.</p>
+        <h3>Alphabet</h3>
+        <p>After our little 'Hello World!' Brainfuck program (and maybe your own output-programs) take a look at this Brainfuck code. It will print the entire English alphabet to the screen.</p>
         <p>Brainfuck code to do so:</p>
         <div class="syntax">
             <p class="command">>++++[<++++++>->++++++++>++++++++++++++++>++++++++<<<]<++>>>+<<<[>>>.>[->+<<+>]<.>>[-<+<->>]<<+<.<<-]</p>
@@ -134,8 +141,20 @@
 
         <br> <br> <br>
 
+        <h3>Fibonnaci Sequence</h3>
+        <p>In contrast to all other examples which were always printing something, this program will <b>not</b> print <b>anything</b> to the output.</p>
+        <p>Instead the output will be left in the memory once the program exits. For this to be effective, you need to have a big enough monitor to view the tape.</p>
+        <p>This program will print the first six fibonacci numbers, then exit.</p>
+
+        <div class="syntax">
+            <p class="command">+>+>+++++-[-[->+<]<<[->>>>+>+<<<<<]>[->>>>>+>+<<<<<<]>>>[-<<<<+>>>>]>[-<<<+>>>]>[-<<<<<+>>>>>]>[-<<<<<+>>>>>]<<<<]</p>
+        </div>
+
+        <button onclick="paste('fib')">Paste to above interpreter</button>
+
+        <br> <br> <br> <br> 
         <p>For even more Brainfuck files, you can visit <a target="_blank" href="https://github.com/fabianishere/brainfuck/tree/master/examples">this</a> GitHub repository; or you can experiment by yourself in the above interpreter and visualizer.</p>
-        <p>Any more ideas? You can contact me at my <a target="_blank" href="https://github.com/janetschel">GitHub</a></p> <br>
+        <p>Any more ideas? You can contact me at my <a target="_blank" href="https://github.com/janetschel">GitHub</a></p> <br> <br> <br>
         <p class="copyright">© Jan Etschel, 2021, licensed under <a target="_blank" href="https://de.wikipedia.org/wiki/WTFPL">WTFPL</a></p>
     
     </div>
@@ -144,5 +163,6 @@
     <script src="./js/toggle-dark.js"></script>
     <script src="./js/paste.js"></script>
     <script src="./js/generator.js"></script>
+    <script src="./js/visualization.js"></script>
 </body>
 </html>

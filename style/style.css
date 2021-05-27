@@ -11,6 +11,8 @@ body {
     display: grid;
     grid-template-areas: 
         ". heading ."
+        "tape tape tape"
+        ". . ."
         "input input input"
         "output-text . ."
         "output output output"
@@ -18,7 +20,7 @@ body {
         "docs docs docs";
 
     grid-template-columns: 100px 750px 100px;
-    grid-template-rows: auto 500px 50px 100px 50px auto;
+    grid-template-rows: auto 50px 25px 500px 50px 100px 50px auto;
 
     justify-content: center;
 }
@@ -39,16 +41,53 @@ div.heading > h2 {
     margin-top: -10px;
 }
 
+/* Visualization styling */
+div.brainfuck-visualization {
+    grid-area: tape;
+
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.05);
+
+    display: grid;
+    grid-template-areas: "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20";
+
+    border: 1px solid black;
+}
+
+div.brainfuck-visualization > div.cell {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+    width: 45px;
+
+    overflow: visible;
+}
+
+div.brainfuck-visualization > div.cell:last-child {
+    border-right: none;
+}
+
+div.brainfuck-visualization > div.cell.targeted::before {
+    content: "▼";
+    position: absolute;
+    margin-top: -75px;
+    margin-left: 17px;
+}
+
 /* Input styling */
 div.brainfuck-input {
     grid-area: input;
 
     display: grid;
     grid-template-areas: 
-        "run . ."
-        "text text text";
+        "run stop . delay"
+        "text text text text";
 
     grid-template-rows: 75px auto;
+    grid-template-columns: 120px 120px auto 150px;
 
     width: calc(100% - 20px);
     margin-bottom: 40px;
@@ -72,14 +111,50 @@ div.brainfuck-input > textarea:focus {
 }
 
 div.brainfuck-input > button {
-    grid-area: run;
     width: 100px;
     height: 50px;
 
     outline: none;
 }
 
+div.brainfuck-input > button#run-button {
+    grid-area: run;
+}
+
+div.brainfuck-input > button#stop-button {
+    grid-area: stop;
+    width: 150px;
+}
+
 div.brainfuck-input > button:hover {
+    cursor: pointer;
+}
+
+div.brainfuck-input > div#delay {
+    grid-area: delay;
+    font-size: 14px;
+    width: 100%;
+    height: calc(100% - 10px);
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+div.brainfuck-input > div#delay > p {
+    float: right;
+}
+
+div.brainfuck-input > div#delay > p.change {
+    font-size: 20px;
+    margin-left: 10px;
+
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+div.brainfuck-input > div#delay > p.change:hover {
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -239,10 +314,10 @@ div#output-generator {
     color: green;
 }
 
-button.no:disabled {
+button:disabled {
     text-decoration: line-through;
 }
 
-button.no:disabled:hover {
-    cursor: initial;
+button:disabled:hover {
+    cursor: initial !important;
 }
