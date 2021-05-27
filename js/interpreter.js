@@ -10,7 +10,7 @@ const paste = (code) => {
 
     document.getElementById("brainfuck-code").innerHTML = toSet;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+};
 
 // From here on: the actual code for interpreting Brainfuck code
 // Before that just some maintenance code :)
