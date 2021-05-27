@@ -12,6 +12,8 @@ const paste = (code) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// From here on: the actual code for interpreting Brainfuck code
+// Before that just some maintenance code :)
 const interpret = () => {
     const code = document.getElementById("brainfuck-code")
         .value
