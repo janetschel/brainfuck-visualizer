@@ -32,6 +32,7 @@ div.output-wrap > h2{
 textarea {
     color: lightsalmon !important;
     background-color: #1f1f1f;
+    caret-color: white !important;
 }
 
 .hr {
@@ -43,6 +44,10 @@ div.docs > div.syntax {
 }
 
 p.command {
+    color: lightsalmon !important;
+}
+
+span.command {
     color: lightsalmon !important;
 }
 

@@ -1,9 +1,14 @@
 const output = document.getElementById("output");
 
-const paste = () => {
-    document.getElementById("brainfuck-code").innerHTML = 
-        "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+const paste = (code) => {
+    let toSet = "";
+    if (code === "hello-world") {
+        toSet = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+    } else if (code === "alphabet") {
+        toSet = ">++++[<++++++>->++++++++>++++++++++++++++>++++++++<<<]<++>>>+<<<[>>>.>[->+<<+>]<.>>[-<+<->>]<<+<.<<-]";
+    }
 
+    document.getElementById("brainfuck-code").innerHTML = toSet;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

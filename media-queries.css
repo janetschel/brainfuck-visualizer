@@ -1,0 +1,93 @@
+@media screen and (max-width: 1337px) {
+    body {
+        grid-template-columns: 100px 650px 100px !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    body {
+        grid-template-columns: 100px 400px 100px !important;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    body {
+        grid-template-columns: 100px 300px 100px !important;
+    }
+
+    p.comment {
+        display: none !important;
+    }
+
+    p.annotated {
+        display: none !important;
+    }
+
+    div.syntax {
+        overflow: scroll;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    button#toggle {
+        display: none !important;
+    }
+
+    a#share {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    body {
+        grid-template-columns: 100px 200px 100px !important;
+    }
+
+    div.heading {
+        margin-bottom: 30px !important;
+    }
+
+    div.heading > h2 {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    body {
+        grid-template-columns: 100px 100px 100px !important;
+        grid-template-areas: 
+        "heading heading heading"
+        "input input input"
+        "output-text . ."
+        "output output output"
+        "hr hr hr"
+        "docs docs docs" !important;
+    }
+
+    ul {
+        margin: 18px !important;
+    }
+
+    h2.output {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    body {
+        grid-template-columns: 100px 50px 100px !important;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
