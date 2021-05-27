@@ -1,22 +1,11 @@
 const output = document.getElementById("output");
+const element = document.getElementById("brainfuck-code");
 
-const paste = (code) => {
-    let toSet = "";
-    if (code === "hello-world") {
-        toSet = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
-    } else if (code === "alphabet") {
-        toSet = ">++++[<++++++>->++++++++>++++++++++++++++>++++++++<<<]<++>>>+<<<[>>>.>[->+<<+>]<.>>[-<+<->>]<<+<.<<-]";
-    }
+element.focus();
+element.setSelectionRange(element.value.length,element.value.length);
 
-    document.getElementById("brainfuck-code").innerHTML = toSet;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-// From here on: the actual code for interpreting Brainfuck code
-// Before that just some maintenance code :)
 const interpret = () => {
-    const code = document.getElementById("brainfuck-code")
-        .value
+    const code = element.value
         .split("")
         .filter(character => ["<", ">", "+", "-", ".", ",", "[", "]"].includes(character));
 

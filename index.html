@@ -51,7 +51,7 @@
         <p>These are the basic commands, which operate on an infinitely long tape where cells are incremented and decremented respectively.</p>
         <p>All other characters are treated as comments (= ignored).</p>
 
-        <h2 class="more">Implementation details</h2>
+        <h2 class="more" id="implementation-details">Implementation details</h2>
         <p>Since the creater of Brainfuck left some details of the behaviour of the interpreter pretty vague, each compiler/interpreter can (and probably will) handle some details differently.</p>
         <p>Here are some important implementation details of this interpreter/visualzier:</p>
         <ul class="implementation-details">
@@ -104,6 +104,25 @@
         </div>
         <button onclick="paste('hello-world')">Paste to above interpreter</button>
 
+        <h2 class="more">Generate your own Brainfuck</h2>
+        <p>If you want to generate your own Brainfuck code, <i>without</i> going through the trouble of typing it out, you can just type any ASCII character in this text-field and Brainfuck code will automatically be generated.</p>
+        <p>It will (probably) not be perfectly minified Brainfuck code but I tried my best to use as much loops as possible.</p>
+        <p>You can try it out right here:</p>
+
+        <br> <br>
+
+        <textarea type="text" name="type" id="type" spellcheck="false" oninput="generateBrainfuck()"></textarea>
+
+        <br>
+        <br>
+        <p>Output:</p> 
+        <div class="syntax output-generator" id="output-generator">
+            <p class="gray">Your output will appear here...</p>
+        </div>
+
+        <button class="no" id="pasteCustom" onclick="paste('custom')">Paste to above interpreter</button>
+
+
         <h2 class="more">Some more examples</h2>
         <p>To conclude our little examples, take a look at this Brainfuck code. It will print the entire English alphabet to the screen.</p>
         <p>Brainfuck code to do so:</p>
@@ -122,5 +141,7 @@
 
     <script src="./js/interpreter.js"></script>
     <script src="./js/toggle-dark.js"></script>
+    <script src="./js/paste.js"></script>
+    <script src="./js/generator.js"></script>
 </body>
 </html>

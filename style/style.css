@@ -208,3 +208,41 @@ a#share {
 button#toggle:hover, a#share {
     cursor: pointer;
 }
+
+/* Generate own Brainfuck code */
+textarea#type {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 16px;
+
+    resize: none;
+    color: black;
+    caret-color: black;
+}
+
+textarea#type:focus {
+    outline: none;
+}
+
+div.output-generator {
+    height: 75px;
+    overflow: scroll;
+    margin-top: 0 !important;
+}
+
+div.output-generator > p.gray {
+    color: gray;
+}
+
+div#output-generator {
+    color: green;
+}
+
+button.no:disabled {
+    text-decoration: line-through;
+}
+
+button.no:disabled:hover {
+    cursor: initial;
+}

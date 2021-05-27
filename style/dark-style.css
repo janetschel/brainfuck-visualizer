@@ -54,3 +54,23 @@ span.command {
 a#share {
     color: white;
 }
+
+textarea#type {
+    color: white !important;
+    caret-color: white;
+}
+
+div#output-generator {
+    color: lightsalmon !important;
+}
+
+/* Selection */
+::moz-selection {
+    color: black;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+::selection {
+    color: black;
+    background: rgba(255, 255, 255, 0.9);
+}
