@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Data -->
+    <meta charset="UTF-8">
+    <meta property="og:description" content="Brainfuck interpreter and visualizer. What the (Brain)fuck?" />
+
     <title>What the (Brain)fuck?</title>
+
     <link rel="stylesheet" href="./style/media-queries/media-queries.css">
     <link rel="stylesheet" href="./style/style.css" id="base-theme">
     <link rel="stylesheet" href="./style/style.css" id="theme"> <!-- specific theme for dark mode -->
 </head>
 <body>
-    <button id="toggle" onclick="toggle()">toggle themes</button>
-    <a target="_blank" id="share" href="https://twitter.com/intent/tweet?text=----[-->%2b%2b%2b%2b%2b<]>.[------>%2b<]>.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.----------.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.[---->%2b<]>%2b%2b%2b.-[--->%2b%2b<]>.---------.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.---------.[--->%2b<]>---.-.%2b%2b%2b[->%2b%2b%2b<]>%2b.%2b%2b%2b%2b%2b.---.%2b%2b%2b%2b%2b%2b%2b.[-->%2b<]>--------.--[--->%2b<]>.%2b.[--->%2b<]>-.[%2b%2b>---<]>--.%2b%2b[->%2b%2b<]>.%2b%2b%2b%2b.[--->%2b<]>-.">share on twitter</a>
+    <button id="toggle" onclick="toggle()">[ toggle themes ]</button>
+    <a target="_blank" id="share" href="https://twitter.com/intent/tweet?text=----[-->%2b%2b%2b%2b%2b<]>.[------>%2b<]>.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.----------.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.[---->%2b<]>%2b%2b%2b.-[--->%2b%2b<]>.---------.%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b%2b.---------.[--->%2b<]>---.-.%2b%2b%2b[->%2b%2b%2b<]>%2b.%2b%2b%2b%2b%2b.---.%2b%2b%2b%2b%2b%2b%2b.[-->%2b<]>--------.--[--->%2b<]>.%2b.[--->%2b<]>-.[%2b%2b>---<]>--.%2b%2b[->%2b%2b<]>.%2b%2b%2b%2b.[--->%2b<]>-.">[ share on twitter ]</a>
     <div class="heading">
         <h1>Brainfuck interpreter and visualizer</h1>
         <h2>visit me at <a target="_blank" href="https://janetschel.dev">janetschel.dev</a></h2>
@@ -141,7 +146,7 @@
 
         <br> <br> <br>
 
-        <h3>Fibonnaci Sequence</h3>
+        <h3>Fibonacci Sequence</h3>
         <p>In contrast to all other examples which were always printing something, this program will <b>not</b> print <b>anything</b> to the output.</p>
         <p>Instead the output will be left in the memory once the program exits. For this to be effective, you need to have a big enough monitor to view the tape.</p>
         <p>This program will print the first six fibonacci numbers, then exit.</p>

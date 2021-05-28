@@ -25,8 +25,10 @@ const visualizeTape = async (tape, pointer, currentCharacter, index) => {
 
     const div = visualizationContext.getElementsByClassName(pointer)[0];
     
-    element.focus();
-    element.setSelectionRange(index, index + 1);
+    if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+        element.focus();
+        element.setSelectionRange(index, index + 1);
+    }
 
     if (["<", ">"].includes(currentCharacter)) {
         moveCaretTo(div);

@@ -4,8 +4,10 @@ const element = document.getElementById("brainfuck-code");
 const run = document.getElementById("run-button");
 const stop = document.getElementById("stop-button")
 
-element.focus();
-element.setSelectionRange(element.value.length, element.value.length);
+if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+    element.focus();
+    element.setSelectionRange(element.value.length, element.value.length);
+}
 
 let execute = false;
 
