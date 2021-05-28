@@ -10,6 +10,6 @@ const paste = (code) => {
         toSet = document.getElementById("output-generator").innerHTML;
     }
 
-    document.getElementById("brainfuck-code").innerHTML = toSet;
+    document.getElementById("brainfuck-code").value = toSet.replace(/&gt;/g, ">").replace(/&lt;/g, "<");
     window.scrollTo({ top: 0, behavior: 'smooth' });
 };
